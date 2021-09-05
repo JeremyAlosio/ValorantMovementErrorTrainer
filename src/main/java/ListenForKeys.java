@@ -17,19 +17,28 @@ public class ListenForKeys implements NativeKeyListener {
 
     public void nativeKeyPressed(NativeKeyEvent e) {
 
-        movement.addKeyToMovement(e);
+        if(movement.isValidMovementKey(e)) {
+            if(!movement.isMoving())
+                movement.storeKeyEventTime(e);
 
-        if(movement.isMoving())
-            alert.AlertStop();
+            movement.addKeyToMovement(e);
+
+            if (movement.isMoving())
+                alert.AlertStop();
+        }
+
     }
 
     @Override
     public void nativeKeyReleased(NativeKeyEvent e) {
 
-        movement.removeKeyFromMovement(e);
+        if(movement.isValidMovementKey(e)) {
+            movement.removeKeyFromMovement(e);
 
-        if(!movement.isMoving())
-            alert.AlertStart();
+            if (!movement.isMoving() && movement.movementErrorStarted(e))
+                alert.AlertStart();
+        }
+
     }
 
 

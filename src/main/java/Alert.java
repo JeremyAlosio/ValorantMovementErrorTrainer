@@ -1,12 +1,12 @@
 public class Alert {
 
-    private Timer timer;
+    private SoundTimer timer;
     private final long gunTime;
 
     public Alert(long gunTime)
     {
         this.gunTime = gunTime;
-        this.timer = new Timer(gunTime);
+        this.timer = new SoundTimer(gunTime);
     }
 
     public void AlertStart()
@@ -17,7 +17,7 @@ public class Alert {
     public void AlertStop()
     {
         timer.timerInterrupt();
-        this.timer = new Timer(gunTime);
+        this.timer = new SoundTimer(gunTime);
     }
 
 }

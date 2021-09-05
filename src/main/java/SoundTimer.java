@@ -1,11 +1,11 @@
 import java.time.ZonedDateTime;
 
-public class Timer extends Thread {
+public class SoundTimer extends Thread {
 
     long timerLength;
     boolean continueTimer = true;
 
-    public Timer(long timerLength)
+    public SoundTimer(long timerLength)
     {
         this.timerLength = (long) (timerLength);
     }
